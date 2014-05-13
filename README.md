@@ -11,9 +11,9 @@ Once your blog is added, Blaggregator will crawl it periodically for new posts.
 
 ###Contribute
 
-Want to contribute a feature or bugfix? Blaggregator is a straightforward Django app with a Twitter Bootstrap frontend. It's deployed on Heroku and uses their Postgres and Scheduler add-ons. 
+Want to contribute a feature or bugfix? Blaggregator is a straightforward Django app with a Twitter Bootstrap frontend. It's deployed on Heroku and uses their Postgres and Scheduler add-ons.
 
-Key files: 
+Key files:
 - blaggregator/settings.py: app settings
 - home/management/commands/crawlposts.py: background crawler script
 - home/feedergrabber27.py: feed parser contributed by dpb
@@ -28,19 +28,23 @@ Check out [CONTRIBUTE.md](CONTRIBUTE.md) for ideas for what to build.
 
 - Install dependencies:
 
+On OSX Mavericks, the C compiler errors out if it doesn't recognize a compiler flag which happens alot in the Python world. Export the following two environmental variables to get around this problem.
+export CFLAGS=-Qunused-arguments
+export CPPFLAGS=-Qunused-arguments
+
 `pip install -r requirements.txt`
 
 - Install Postgres (it's easy on OSX with [postgres.app](http://postgresapp.com/)) and `pip install psycopg2`. Open the app to start your database server running locally. Open a Postgres shell:
 
 `psql`
 
-Create your database: 
+Create your database:
 
 `CREATE DATABASE blaggregator_dev;`
 
 The semicolon is critical. IMPORTANT: when you are creating your admin account on the db, *don't* use the same email address as your Hacker School account or you won't be able to create a user account for yourself. Do username+root@example.com or something.
 
-Set up initial tables: 
+Set up initial tables:
 
 `$ python manage.py syncdb`
 
@@ -55,7 +59,7 @@ OperationalError: could not connect to server: No such file or directory
 Is the server running locally and accepting
 connections on Unix domain socket "/var/pgsql_socket/.s.PGSQL.5432"?
 ```
-then your server isn't running. Go fiddle with Postgres.app. 
+then your server isn't running. Go fiddle with Postgres.app.
 
 - Turn on debugging in your environment so you can get useful error messages:
 
@@ -67,4 +71,4 @@ then your server isn't running. Go fiddle with Postgres.app.
 
 You can administer your app through the [handy-dandy admin interface](http://localhost:8000/admin). You can be logged in as the admin or as your user account, but not both at the same time.
 
-This installation can be a bit fiddly but once it's set up, it's smooth sailing. 
+This installation can be a bit fiddly but once it's set up, it's smooth sailing.
